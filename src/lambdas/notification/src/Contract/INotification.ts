@@ -1,7 +1,6 @@
-// import {IUser} from '@lambdas/user/Contract/IUser'
-
-export interface INotification{
-    pk: string //compose notificationType#messageType
+export interface INotification {
+    pk: string //compose notificationType#category
     timeDelivery: string
     user: any
+    message: string
 }

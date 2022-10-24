@@ -59,27 +59,27 @@ export default {
             }
         }
     },
-    UserTable: {
+    UserCategoriesTable: {
         Type: 'AWS::DynamoDB::Table',
         Properties: {
-            TableName: '${self:provider.environment.USER_TABLE}',
+            TableName: '${self:provider.environment.USER_CATEGORIES_TABLE}',
             AttributeDefinitions: [
                 {
-                    'AttributeName': 'id',
+                    'AttributeName': 'category',
                     'AttributeType' : 'S'
                 },
                 {
-                    'AttributeName': 'name',
+                    'AttributeName': 'sk', //compound field from name#email
                     'AttributeType': 'S'
                 }
             ],
             KeySchema: [
                 {
-                    'AttributeName': 'id',
+                    'AttributeName': 'category',
                     'KeyType': 'HASH'
                 },
                 {
-                    'AttributeName': 'name',
+                    'AttributeName': 'sk',
                     'KeyType': 'RANGE'
                 }
             ],
@@ -88,5 +88,5 @@ export default {
                 'WriteCapacityUnits': '1'
             }
         }
-    }
+    },
 }

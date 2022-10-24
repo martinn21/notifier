@@ -4,4 +4,5 @@ export class Notification {
     pk: string //compose notificationType#messageType
     timeDelivery: string
     user: Set<string>
+    message: string
 }

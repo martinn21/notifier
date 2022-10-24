@@ -1,15 +1,19 @@
 import {Container, Service} from 'typedi'
-import {IUser} from "@lambdas/user/Contract/IUser";
-import {User as UserRepository} from '../Repository/User'
+import {UserCategories as UserCategoriesRepository} from '../Repository/UserCategories'
+import {IUserCategories} from '@lambdas/user/Contract/IUserCategories'
 
 @Service()
 export class User {
-    private userRepository: UserRepository
+    private userCategoriesRepository: UserCategoriesRepository
     constructor() {
-        this.userRepository = Container.get(UserRepository)
+        this.userCategoriesRepository = Container.get(UserCategoriesRepository)
     }
 
-    public async getAllUsers(): Promise<IUser[]> {
-        return await this.userRepository.getAllUsers()
+    public async getAllUsers(): Promise<IUserCategories[]> {
+        return await this.userCategoriesRepository.getAllUsers()
+    }
+
+    public async getUserBySubscribedCategory(category: string): Promise<IUserCategories[]> {
+        return await this.userCategoriesRepository.getUserBySubscribedCategory(category)
     }
 }

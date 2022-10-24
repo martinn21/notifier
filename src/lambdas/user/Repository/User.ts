@@ -20,7 +20,17 @@ export class User {
                     },
                     name: {
                         type: 'String',
-                        keyType: 'RANGE'
+                        keyType: 'RANGE',
+                        indexKeyConfigurations: {
+                            'subscribed-name-index': 'RANGE'
+                        }
+                    },
+                    subscribed: {
+                        type: 'Set',
+                        memberType: 'String',
+                        indexKeyConfigurations: {
+                            'subscribed-name-index': 'HASH'
+                        }
                     },
                 },
             },
@@ -33,6 +43,22 @@ export class User {
         for await (const record of iterator) {
             console.log(record)
             users.push(record)
+        }
+
+        return users
+    }
+
+    public async getUserBySubscribedCategory(category: string): Promise<IUser[]> {
+        let users: IUser[] = []
+        const iterator = this.mapper.query(
+            UserModel,
+            {
+                subscribed: {"SS" : [category]}
+            },
+            {indexName: 'subscribed-name-index'}
+        )
+        for await (const record of iterator) {
+            console.log(record)
         }
 
         return users

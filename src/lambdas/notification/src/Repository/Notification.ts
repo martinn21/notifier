@@ -2,7 +2,7 @@ import {DataMapper, DynamoDbSchema, DynamoDbTable, ScanIterator} from '@aws/dyna
 import {Container, Service} from 'typedi'
 import {INotification} from '@lambdas/notification/src/Contract/INotification'
 import {Notification as NotificationModel} from '../Model/Notification'
-import {IUser} from "@lambdas/user/Contract/IUser";
+import {IUser} from '@lambdas/user/Contract/IUser'
 
 @Service()
 export class Notification {
@@ -15,13 +15,16 @@ export class Notification {
             },
             [DynamoDbSchema]: {
                 value: {
-                    pk: {
+                    pk: { //compose notificationType#category
                         type: 'String',
                         keyType: 'HASH',
                     },
                     timeDelivery: {
                         type: 'String',
                         keyType: 'RANGE'
+                    },
+                    message: {
+                        type: 'String',
                     },
                     user: {
                         type: 'Set',
@@ -49,5 +52,13 @@ export class Notification {
         }
 
         return notifications
+    }
+
+    public async save(notification: INotification): Promise<INotification> {
+        const toSave = Object.assign(new NotificationModel, notification)
+        const result = await this.mapper.put(toSave)
+        console.log(result)
+
+        return notification
     }
 }

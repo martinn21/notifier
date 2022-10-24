@@ -10,7 +10,13 @@ export default {
                     method: 'get',
                     path: 'notification'
                 }
-            }
+            },
+            {
+                http: {
+                    method: 'post',
+                    path: 'notification'
+                }
+            },
         ]
     }
 }

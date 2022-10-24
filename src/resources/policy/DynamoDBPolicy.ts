@@ -38,6 +38,17 @@ export default {
                             ]
                         ]
                     },
+                    {
+                        'Fn::Join': [
+                            ':',
+                            [
+                                'arn:aws:dynamodb',
+                                {'Ref': 'AWS::Region'},
+                                {'Ref': 'AWS::AccountId'},
+                                'table/user-categories-table-notifier-${self:custom.stage}'
+                            ]
+                        ]
+                    }
                 ]
             }
         ]

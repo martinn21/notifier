@@ -14,7 +14,7 @@ const serverlessConfiguration: AWS = {
     stage: '${opt:stage, "dev"}',
     categoryTable: 'category-table-notifier-'+'${self:custom.stage}',
     notificationTable: 'notification-table-notifier-'+'${self:custom.stage}',
-    userTable: 'user-table-notifier-'+'${self:custom.stage}',
+    userCategoriesTable: 'user-categories-table-notifier-'+'${self:custom.stage}',
     esbuild: {
       bundle: true,
       minify: false,
@@ -48,7 +48,7 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       CATEGORY_TABLE: '${self:custom.categoryTable}',
       NOTIFICATION_TABLE: '${self:custom.notificationTable}',
-      USER_TABLE: '${self:custom.userTable}'
+      USER_CATEGORIES_TABLE: '${self:custom.userCategoriesTable}'
     },
   },
   plugins: [
