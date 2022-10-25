@@ -8,13 +8,15 @@ export default {
             {
                 http: {
                     method: 'get',
-                    path: 'notification'
+                    path: 'notification',
+                    cors: true
                 }
             },
             {
                 http: {
                     method: 'post',
-                    path: 'notification'
+                    path: 'notification',
+                    cors: true
                 }
             },
         ]

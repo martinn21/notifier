@@ -27,17 +27,6 @@ For the `notifications` `POST` method the request body must be provided as `appl
 
 > :warning: As is, this template, once deployed, opens a **public** endpoint within your AWS account resources. Anybody with the URL can actively execute the API Gateway endpoint and the corresponding lambda. One missing step that should be included is to protect this endpoint with the authentication method of my choice, which probably could be cognito.
 
-### Remotely
-
-Go to these urls to see the different endpoints responses
-```
-curl --location --request POST 'https://myApiEndpoint/dev/hello' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "Frederic"
-}'
-```
-
 ### Project structure
 
 The project code base is mainly located within the `src` folder. This folder is divided in:
